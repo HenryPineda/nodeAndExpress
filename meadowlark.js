@@ -5,16 +5,18 @@ var app = express();
 
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 
-var fortunes = [
+// var fortunes = [
 
-	"Conquer your fears or they will conquer your",
-	"Rivers need springs",
-	"Do not fear what you dont know",
-	"You will have a pleasant surprise",
-	"Whenever possible, keep it simple",
+// 	"Conquer your fears or they will conquer your",
+// 	"Rivers need springs",
+// 	"Do not fear what you dont know",
+// 	"You will have a pleasant surprise",
+// 	"Whenever possible, keep it simple",
 
 
-];
+// ];
+
+var fortune = require('./lib/fortune.js');
 
 app.engine('handlebars', handlebars.engine);
 
@@ -39,10 +41,9 @@ app.get('/about', function(request, response){
 	// response.type('text/plain');
 	// response.send('About Meadowlark Travel');
 
-	var randomFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
-
-
-	response.render('about', { fortune: randomFortune });
+	// var randomFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
+	// response.render('about', { fortune: randomFortune });
+	response.render('about', { fortune: fortune.getFortune() });
 })
 
 
